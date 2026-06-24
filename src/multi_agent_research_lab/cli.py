@@ -120,12 +120,13 @@ def benchmark(
     console.print("[bold]Running benchmark: single-agent vs multi-agent[/bold]\n")
 
     console.print("  [1/2] Running single-agent baseline...")
-    _, baseline_metrics = run_benchmark("single-agent", query, _single_agent_runner)
+    baseline_state, baseline_metrics = run_benchmark("single-agent", query, _single_agent_runner)
 
     console.print("  [2/2] Running multi-agent workflow...")
-    _, multi_metrics = run_benchmark("multi-agent", query, _multi_agent_runner)
+    multi_state, multi_metrics = run_benchmark("multi-agent", query, _multi_agent_runner)
 
     metrics = [baseline_metrics, multi_metrics]
+    states = [baseline_state, multi_state]
 
     # Rich table
     table = Table(title="Benchmark Results")
@@ -145,7 +146,7 @@ def benchmark(
     console.print(table)
 
     # Write markdown report
-    report_md = render_markdown_report(metrics)
+    report_md = render_markdown_report(metrics, states)
     os.makedirs(os.path.dirname(output), exist_ok=True)
     with open(output, "w", encoding="utf-8") as f:
         f.write(report_md)
