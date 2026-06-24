@@ -192,6 +192,5 @@ In summary, while the foundational concepts underpinning GraphRAG are well-estab
 | Agent hallucination | Facts not in sources appear in answer | Add Critic agent + citation coverage check |
 | Search miss | No relevant sources found | Expand mock KB or enable Tavily live search |
 | Timeout | Wall-clock > `TIMEOUT_SECONDS` | Reduce `max_sources` or increase timeout |
-| Rate limit (429) | OpenAI free-tier exhausted | Add credits or switch to OpenRouter free model |
-| Auth failure (401) | Wrong API key or inline `.env` comments | Strip comments from `.env` values |
+
 
